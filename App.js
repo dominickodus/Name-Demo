@@ -114,7 +114,7 @@ export default function App() {
 
             {page === 1 && (
                 <View style={styles.page}>
-                    <Text style={styles.header}>ReVive 1.4</Text>
+                    <Text style={styles.header}>Aveo 1.4</Text>
                     <View style={styles.goalContainer}>
                         <Text style={styles.goalLabel}>DAILY PROGRESS</Text>
                         <View style={styles.progressBar}>
