@@ -37,7 +37,5 @@ This project is a **functional prototype** used to demonstrate:
 
 ## Status
 
-Preview Model 1.2  
-- Core features implemented  
-- UI partially refined  
-- Verification and historical data simulated  
+Preview Model 1.4  
+- Ready for demonstration
