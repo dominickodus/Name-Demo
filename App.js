@@ -12,6 +12,8 @@ export default function App() {
     const [secondsElapsed, setSecondsElapsed] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
     const intervalRef = useRef(null);
+    const [verifying, setVerifying] = useState(false);
+    const [verified, setVerified] = useState(false);
 
     // --- Live Data (Today) ---
     const [todayLogs, setTodayLogs] = useState({ Study: 0, Fitness: 0, Unplugged: 0 });
@@ -53,10 +55,25 @@ export default function App() {
                 ]
             );
         } else {
-            setTodayLogs(prev => ({ ...prev, [activity]: prev[activity] + secondsElapsed }));
-            resetTracker();
-        }
-    };
+            setVerifying(true);
+
+            setTimeout(() => {
+                setVerifying(false);
+                setVerified(true);
+
+                setTodayLogs(prev => ({
+                    ...prev,
+                    [activity]: prev[activity] + secondsElapsed
+                }));
+
+                resetTracker();
+
+                setTimeout(() => {
+                    setVerified(false);
+                }, 1500);
+
+            }, 2000);
+    };}
 
     const resetTracker = () => {
         clearInterval(intervalRef.current);
@@ -194,6 +211,29 @@ export default function App() {
                     </TouchableOpacity>
                 ))}
             </View>
+
+            {(verifying || verified) && (
+                <View style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: "rgba(0,0,0,0.7)",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}>
+                    <View style={{
+                        backgroundColor: "#1e293b",
+                        padding: 30,
+                        borderRadius: 20,
+                    }}>
+                        <Text style={{ color: "#fff", fontSize: 18, fontWeight: "bold" }}>
+                            {verifying ? "Verifying..." : "Verification Complete"}
+                        </Text>
+                    </View>
+                </View>
+            )}
         </SafeAreaView>
     );
 }
