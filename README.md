@@ -5,7 +5,7 @@ This is a mobile prototype developed for the **NovaUCD Student Enterprise Compet
 
 The app demonstrates a system for tracking and verifying real-world activities such as study, fitness, and time away from phones.
 
----
+--
 
 ## Features
 
